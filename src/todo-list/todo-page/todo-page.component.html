@@ -1,0 +1,69 @@
+<div *ngIf="ItemList.length > 0; else emptyTodoList" class="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-stretch" [ngStyle]="{backgroundColor:'var(--surface-500)', borderRadius: '10px' }">
+    <todo-title-card class="col-span-full" (filterChanged)="filterChanged($event)"></todo-title-card>
+    <div *ngFor="let item of ItemList.filter(activeFilter)">
+        <todo-item [ToDoItem]="item" (removeItem)="removeItem($event)" class="col-span-1"/>
+    </div>
+    <div class="col-span-1 py-30 text-center"><p-button severity="success" icon="pi pi-plus" (click)="showAddPrompt()"/></div>
+</div>
+
+
+<ng-template #emptyTodoList>
+    <p class="text-2xl pt-20 text-center primary-200">Nie masz żadnych zadań :), możesz je dodać <p-button severity="success" class="ml-10" icon="pi pi-plus" (click)="showAddPrompt()"/></p>
+</ng-template>
+
+
+
+<!-- Dialog usuwania -->
+<p-dialog [(visible)]="deletionPromptVisible" [modal]="true" [style]="{ width: '25rem' }" draggable="false" resizable="false">
+    <ng-template #header>
+        <div class="inline-flex items-center justify-center gap-2">
+            <p class="font-bold whitespace-nowrap">Usuwanie</p>
+        </div>
+    </ng-template>
+    <p>Czy napewno chcesz usunąć "{{ItemToDelete.title}}"</p>
+    <ng-template #footer>
+        <p-button label="Nie" [text]="true" severity="primary" (click)="deletionPromptVisible = false" />
+        <p-button label="Tak" [outlined]="true" severity="danger" (click)="trueRemoveItem()"/>
+    </ng-template>
+</p-dialog>
+
+<!-- Dialog dodawania -->
+<p-dialog [(visible)]="additionPromptVisible" [modal]="true" [style]="{ width: '25rem' }" draggable="false" resizable="false">
+    <ng-template #header>
+        <div class="inline-flex items-center justify-center gap-2">
+            <p class="font-bold whitespace-nowrap">Dodawanie zadania</p>
+        </div>
+    </ng-template>
+    <div class="flex flex-col items-center justify-center gap-y-5 p-2">
+        <p-select [options]="icons" [(ngModel)]="newItemIcon"  optionValue="value" placeholder="Wybierz Ikone" class="w-65">
+            <ng-template #selectedItem let-item>
+                <div class="flex items-center gap-2" *ngIf="item">
+                    <i [ngClass]="item.value"></i>
+                    <div>{{ item.key }}</div>
+                </div>
+            </ng-template>
+            <ng-template let-item #item>
+                <div class="flex items-center gap-2">
+                    <i [ngClass]="item.value"></i>
+                    <div>{{ item.key }}</div>
+                </div>
+            </ng-template>
+        </p-select>
+        <!-- <p-floatlabel variant="on">
+            <input pInputText id="newIcon" [(ngModel)]="newItemIcon" [required]="true" autocomplete="off" class="w-65"/>
+            <label for="newIcon">Ikona</label>
+        </p-floatlabel> -->
+        <p-floatlabel variant="on">
+            <input pInputText id="newTitle" [(ngModel)]="newItemTitle" autocomplete="off" class="w-65" />
+            <label for="newTitle">Tytuł</label>
+        </p-floatlabel>
+        <p-floatlabel variant="on">
+            <textarea pTextarea  id="newDescription" rows="5" cols="30" [(ngModel)]="newItemDescription" autocomplete="off"></textarea>
+            <label for="newDescription">Opis</label>
+        </p-floatlabel>
+    </div>
+    <ng-template #footer>
+        <p-button label="Anuluj" [text]="true" severity="primary" (click)="additionPromptVisible = false" />
+        <p-button label="Dodaj" [outlined]="true" severity="success" (click)="addItem()"/>
+    </ng-template>
+</p-dialog>

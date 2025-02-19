@@ -1,0 +1,10 @@
+<div class="card m-5">
+    <p-menubar [model]="items">
+      <ng-template #end>
+          <div class="card flex justify-center">
+              <p-togglebutton  onLabel="Jasny" offLabel="Ciemny" styleClass="w-28" [(ngModel)]="checked" (onChange)="darkModeToogle()" />
+          </div>
+      </ng-template>
+    </p-menubar>
+  </div>
+

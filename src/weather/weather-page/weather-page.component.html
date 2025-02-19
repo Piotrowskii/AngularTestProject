@@ -1,0 +1,15 @@
+<!-- <div class="flex px-5 flex-col md:flex-row flex-wrap gap-4">
+<app-temperature-card class="w-1/4"/>
+<app-temperature-card class="w-3/4"/>
+</div> -->
+<div class="grid gap-3 grid-cols-2 md:grid-cols-4 items-stretch">
+    <weather-title-card class="col-span-full" [title]="'Polska, Poznań'"/>
+    <weather-info-card  class="md:col-span-1 col-span-2" [icon]="'bi bi-thermometer-high'" [size]="'5rem'" [value]="currentTemperature" [unit]="'°C'"/>
+    <app-apexchart-card class="md:col-span-3 col-span-2" [labels]="hourLabels" [values]="temperatureValues" [title]="'Temperatura 24h'" [unit]="'°C'"/>
+    <weather-info-card  class="md:col-span-1" [icon]="'bi bi-speedometer'" [value]="currentPressure" [unit]="'hpa'"/>
+    <weather-info-card  class="md:col-span-1" [icon]="'bi bi-wind'"  [value]="currentWindSpeed" [unit]="'km/h'"/>
+    <weather-info-card  class="md:col-span-1" [icon]="'bi bi-droplet'"  [value]="currentHumidity" [unit]="'%'"/>
+    <weather-info-card  class="md:col-span-1" [icon]="'bi bi-cloud'"  [value]="currentCloudCoverage" [unit]="'%'"/>
+</div>
+<br>
+

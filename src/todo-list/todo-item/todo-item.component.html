@@ -1,0 +1,10 @@
+<div class="p-card h-full text-center p-4 flex-col items-center justify-center">
+    <i [ngClass]="ToDoItem.icon" style="font-size: 4rem" class="primary-300"></i>
+    <p class="text-2xl break-words mb-3 font-bold primary-500">{{ToDoItem.title}}</p>
+    <p class="text-base break-words">{{ToDoItem.description}}</p>
+    <br>
+    <div class="flex flex-row mt-auto w-full justify-between">
+        <p-button label="" icon="pi pi-trash" (click)="removeItem.emit(ToDoItem)"></p-button>
+        <p-togglebutton [(ngModel)]="ToDoItem.finished" onLabel="Zrobione" offLabel="Nie Zrobione" (onChange)="changeFinished(ToDoItem.finished)"/>
+    </div>
+</div>

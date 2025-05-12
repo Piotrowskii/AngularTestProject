@@ -4,9 +4,9 @@ First project made in angular featuring a to-do list and a weather page that fet
 (To build it yourself run <code>npm install</code> and then <code>ng serve</code>)
 
 <ul>
-<li>🌤️ API: https://open-meteo.com</li>
-<li>📝 UI: PrimeNg</li>
-<li>📊 Charts: ApexCharts</li>
+<li>🌤️ <b>API</b>: https://open-meteo.com</li>
+<li>📝 <b>UI</b>: PrimeNg</li>
+<li>📊 <b>Charts</b>: ApexCharts</li>
 </ul>
 
 # Gallery

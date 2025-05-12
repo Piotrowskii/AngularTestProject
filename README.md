@@ -1,6 +1,7 @@
 # Introduction
 
-First project made in angular featuring a to-do list and a weather page that fetches live data from a public API.
+First project made in angular featuring a to-do list and a weather page that fetches live data from a public API.<br>
+(To build it yourself run <code>npm install</code> and then <code>ng serve</code>)
 
 <ul>
 <li>🌤️ API: https://open-meteo.com</li>
